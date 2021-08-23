@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RBG GAME</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		#top{
+			height: 160px;
+			width: 100%;
+		}
+		#container{
+	        background:gray;
+			width: 100%;
+			text-align:center;
+
+		}
+		#square{
+			width: 150px;
+            height: 150px;
+            
+            display: inline-block;
+            margin: 30px;
+            margin-top: 10px !important;
+		}
+		#question{
+			text-align: center;
+			font-weight: bold;
+			font-family: serif;
+			font-size:40px;
+			padding-top: 30px;
+		}
+		#alert{
+			width: 100%;
+			height: 50px;
+			background:#0c020e;
+			margin-top: 40px;
+			color: white;
+			text-align: center;
+			line-height: 40px;
+			font-size: 20px;
+		}
+         #footer{
+		    	width:100%;
+		    	height: 250px;
+		    	background:#0c020e;
+		    	text-align: center;
+		    	color: white;
+		    	padding-top:25px;
+		    	font-family: sans-serif;
+		    	font-weight: bold;
+		    	font-size: 25px;
+
+		    }
+
+
+        @media only screen and (max-width:600px){
+
+        	 #square{
+        	 	width:90px;
+        	 	height: 100px;
+        	 	display: inline-block;
+        	 	margin: 10px;
+        	 }
+        	#top{
+			height: 220px;
+			width: 100%;
+		    }
+		    #footer{
+                   height: 180px;
+		    }
+		    #dev{
+		    	font-size: 10px;
+		    	color:lightblue;
+		    	text-align: right;
+		    	margin-top: 60px;
+		    	font-weight: normal;
+
+
+		    }
+		    #alert{
+		    	margin-top: 50px;
+		    	line-height: 50px;
+		    }
+		    #question{
+		        padding-top: 70px;
+		    }
+        }
+	</style>
+</head>
+<body>
+          <div id="top">
+           
+          	   <div id="question"></div>
+          	        <div id="alert"></div>
+          </div>
+          <div id="container">
+          	  <div id="square"></div>
+          	  <div id="square"></div>
+          	  <div id="square"></div><br>
+          	  <div id="square"></div>
+          	  <div id="square"></div>
+          	  <div id="square"></div><br>
+          	  <div id="square"></div>
+          	  <div id="square"></div>
+          	  <div id="square"></div>
+          </div>
+          <div id="footer">
+          	  <p>Great RGB GAME For Beginner</p>
+          	  <div id="dev"><p>Developed By<br> Kaung Htet Aung</p></div>
+          </div>
+          <script type="text/javascript">
+          	 
+              var numSq=9;
+              var color=[];
+              color=getRandomColor(numSq);
+              var  pickColor;
+              var topColor=document.getElementById('top');
+              var square=document.querySelectorAll('#square');
+              var ques= document.querySelector('#question');
+               var aler= document.querySelector('#alert');
+              topColor.style.backgroundColor='skyblue';
+              Square();
+             function Square(){   
+                       pickColor=chooseColor();  
+                       ques.innerHTML=pickColor;
+
+                       for(var i=0;i<square.length;i++){
+                    	square[i].style.backgroundColor=color[i];                    	 
+                    	square[i].addEventListener('click', function(){
+                    		var clickColor=this.style.backgroundColor;
+                    		if(pickColor === clickColor){
+                    			aler.textContent="CONGRATULATION";
+                    			changeColor();
+                    		topColor.style.backgroundColor=pickColor
+                    		;
+
+                    		}
+
+                    		else
+                    		{
+                    			aler.textContent="SORRY";
+                    			this.style.backgroundColor='gray';
+                    			
+                    		}
+                    	})                 
+                    }
+                   
+
+                     
+              } 
+            
+              function chooseColor(){
+              	var rando=Math.floor(Math.random()*color.length);                
+              	 return color[rando];
+              }
+              function getRandomColor(num){
+                       var arr=[];
+                       for(var i=0;i<num;i++){
+                       	  arr.push(makeColor());
+                       }
+                       return arr;
+              }
+              
+              function changeColor(){
+              	 for(var i=0;i<square.length;i++){
+              	 	 square[i].style.backgroundColor=pickColor;
+              	 }
+              }
+           
+          	  function makeColor(){
+
+          	  	var r=Math.floor(Math.random()*256);
+          	  	var g=Math.floor(Math.random()*256);
+          	  	var b=Math.floor(Math.random()*256);
+
+          	  	return "rgb("+r+","+" "+g+","+" "+b+")";
+          	  }
+          	  
+
+               
+          </script> 
+
+          
+</body>
+</html>
